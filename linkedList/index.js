@@ -87,6 +87,19 @@ class LinkedList {
         return current.data;
     }
 
+
+    getMid(){
+        var i=0;
+        var firstCurrent=this.head;
+        var secondCurrent=this.head;
+        while(firstCurrent && firstCurrent.next){
+              firstCurrent=firstCurrent.next.next;
+              if(firstCurrent){secondCurrent=secondCurrent.next;    }
+                      
+        }
+        return secondCurrent.data;
+    }
+
     //delete node at particular index
       deleteAt(index){
           var count=0;
@@ -119,6 +132,8 @@ class LinkedList {
         }
     }
 
+
+
 }
 
 
@@ -126,10 +141,17 @@ const list = new LinkedList();
 list.insertFirst(120);
 list.insertFirst(190);
 list.insertFirst(130);
-list.insertAt(150, 1)
-//console.log(list.getAt(2))
-console.log(list);
-list.deleteAt(1);
-console.log(list);
+list.insertFirst(200);
+list.insertFirst(300);
+list.insertFirst(400);
+list.insertFirst(500);
+list.insertFirst(600);
 
-//list.printElement();
+
+//console.log(list.getAt(2))
+
+//list.deleteAt(1);
+//console.log(list.head.next);
+console.log("######",list.getMid())
+
+list.printElement();
