@@ -8,64 +8,102 @@ class Node {
 
 
 class BinaryTree {
-    constructor() {
-        this.root = null;
+    constructor(value) {
+        this.root = new Node(value);
+        this.count = 1
     }
+
+    //function to return size of tree
+    size() {
+        return this.count;
+    }
+
 
     //function to insert node;
 
-    insertNode(val) {
-        var root = this.root
-        if (!root) {
-            this.root = new Node(val)
-        }
+    insertNode(value) {
+        var node = new Node(value)
 
-        var node = new Node(val);
-        var current = root
-        while (current) {
-            if (val < current.value) {
-                if (!current.left) {
-                    current.left = node;
-                    break;
+        const searchTree = (Node) => {
+            //if value is greater than Node then insert to right
+            if (value > Node.value) {
+                if (!Node.right) {
+                    Node.right = node;
                 }
                 else {
-                    current = current.left
+                    searchTree(Node.right)
                 }
+            }
+            //else insert to left
+            else {
+                if (!Node.left) {
+                    Node.left = node;
+                }
+                else {
+                    searchTree(Node.left)
+                }
+
+            }
+        }
+
+        searchTree(this.root);
+
+    }
+
+    print(node) {
+        if (node) {
+            console.log(node.value)
+            this.print(node.left);
+            this.print(node.right);
+        }
+    }
+
+    contains(val) {
+        var current = this.root;
+        while (current) {
+            if (val === current.value) {
+                return true;
+            }
+            if (val < current.value) {
+                current = current.left;
             }
             else {
-                if (!current.right) {
-                    current.right = node;
-                    break;
-                }
-                else {
-                    current = current.right;
-                }
+                current = current.right;
             }
 
         }
+        return false;
+
     }
 
-    print(node){
-       if(node){
-       console.log(node.value)
-       this.print(node.left);
-       this.print(node.right);
-       }
-    }
+    bfs() {
 
-    search(val,node) {
-       if(val>node.value){
-        search
-       }
-        
+        var result = [];
+        var queue = [];
+        queue.push(this.root)
+
+
+        while (queue.length) {
+            var current = queue.shift();
+            result.push(current.value);
+
+            if (current.left) {
+                queue.push(current.left)
+            }
+            if (current.right) {
+                queue.push(current.right)
+            };
+        }
+        return result
     }
 
 }
 
 
-var Bst = new BinaryTree();
+var Bst = new BinaryTree(15);
 Bst.insertNode(12);
 Bst.insertNode(10);
 Bst.insertNode(5)
 Bst.insertNode(145);
-Bst.print(Bst.root);
+
+console.log(Bst.bfs())
