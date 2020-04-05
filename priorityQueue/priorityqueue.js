@@ -23,7 +23,6 @@ class PriorityQueue {
             this.heap[currentNodeIndex] = temp;
             currentNodeIndex = parentNodeIndex;
             parentNodeIndex = Math.floor((currentNodeIndex - 1) / 2);
-
         }
     }
 
