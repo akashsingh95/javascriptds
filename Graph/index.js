@@ -1,3 +1,5 @@
+var Queue = require('../queue/index.js')
+
 class Graph {
     constructor(noofvertices) {
         this.noofvertices = noofvertices;
@@ -27,7 +29,6 @@ class Graph {
     }
 
     visit(visited, vertex) {
-        console.log(vertex)
         visited.add(vertex)
         var adjNodes = this.adjList.get(vertex);
         for (let nodes of adjNodes) {
@@ -36,6 +37,12 @@ class Graph {
             }
         }
 
+    }
+
+    bfs(startingNode){
+        var queue = new Queue(); 
+        queue.enqueue(this.adjList.get(startingNode));
+        queue.enqueue(2);
     }
 
 }
@@ -52,5 +59,6 @@ G.addEdge("a", "c");
 G.addEdge("a", "b");
 G.addEdge("c","d");
 G.addEdge("b","e")
-G.print()
-G.dfs("a")
+//G.print()
+//G.dfs("a")
+G.bfs("a")

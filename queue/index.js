@@ -40,3 +40,5 @@ queue.enqueue(1)
 queue.enqueue(2)
 console.log(queue.dequeue());
 console.log(queue.dequeue());
+
+module.exports = Queue
